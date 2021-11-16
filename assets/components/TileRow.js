@@ -26,11 +26,17 @@ class TileRow extends HTMLElement {
     const newRowEvent = new CustomEvent('new-row', {
       bubbles: true
     });
+    const gameOver = new CustomEvent('game-over', {
+      bubbles: true
+    });
     const currRow = this;
     for (let i = 0; i < tilesWide; i++) {
       const newTile = document.createElement('tile-square');
       newTile.addEventListener('new-row', e => {
         currRow.dispatchEvent(newRowEvent);
+      });
+      newTile.addEventListener('game-over', e => {
+        currRow.dispatchEvent(gameOver);
       });
       if (i == this.tileSelected) newTile.setBlack();
       row.append(newTile);
@@ -42,7 +48,7 @@ class TileRow extends HTMLElement {
   setBottomRow() {
     const squares = Array.from(this.shadowRoot.querySelectorAll('tile-square'));
     squares.forEach(square => {
-      square.bottomRow = true;
+      square.setBottomRow();
     });
   }
 }

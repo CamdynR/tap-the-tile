@@ -4,6 +4,20 @@
   font-family: sans-serif;
 }
 
+header {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: 50px;
+}
+
+header p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  padding-left: 12px;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -12,6 +26,36 @@ html, body {
 }
 
 #root {
-  height: 100%;
+  height: calc(100% - 50px);
   width: 100%;
+}
+
+#score {
+  color: black;
+}
+
+#score.in-game {
+  color: green;
+}
+
+#score.game-over {
+  color: red;
+}
+
+#time-left {
+  color: gray;
+  justify-self: right;
+  padding-right: 12px;
+}
+
+#time-left.start {
+  color: green;
+}
+
+#time-left.halfway {
+  color: black;
+}
+
+#time-left.tenSec {
+  color: red;
 }

@@ -19,6 +19,10 @@ class TileSquare extends HTMLElement {
         width: 100%;
       }
 
+      div.gray {
+        background-color: #777 !important;
+      }
+
       div.black {
         background-color: black;
       }
@@ -31,10 +35,15 @@ class TileSquare extends HTMLElement {
     const newRowEvent = new CustomEvent('new-row', {
       bubbles: true
     });
+    const gameOver = new CustomEvent('game-over', {
+      bubbles: true
+    });
     const currTile = this;
     this.addEventListener('click', e => {
       if (this.black && this.bottomRow) {
         currTile.dispatchEvent(newRowEvent);
+      } else {
+        currTile.dispatchEvent(gameOver);
       }
     });
 
@@ -44,6 +53,16 @@ class TileSquare extends HTMLElement {
   setBlack() {
     this.black = true;
     this.shadowRoot.querySelector('div').classList.add('black');
+    if (this.bottomRow) {
+      this.shadowRoot.querySelector('div').classList.add('gray');
+    }
+  }
+
+  setBottomRow() {
+    this.bottomRow = true;
+    if (this.black) {
+      this.shadowRoot.querySelector('div').classList.add('gray');
+    }
   }
 }
 
