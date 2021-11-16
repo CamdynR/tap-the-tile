@@ -23,6 +23,7 @@ function init() {
         }
         const newTime = new Date().getTime();
         if (Number(time.innerHTML) == 0 || startTime - newTime >= 60000) {
+          startTime = 0;
           tileBoard.score = 0;
           score.innerHTML = `${currScore} - Game Over`;
           score.classList.remove('in-game');
@@ -43,6 +44,7 @@ function init() {
     currScore = e.detail.score;
   });
   tileBoard.addEventListener('game-over', e => {
+    startTime = 0;
     score.innerHTML = `${currScore} - Game Over`;
     score.classList.remove('in-game');
     score.classList.add('game-over');
