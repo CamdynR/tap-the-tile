@@ -15,14 +15,14 @@ function init() {
       time.innerHTML = Number(time.innerHTML) - 1;
       time.setAttribute('class', 'start');
       intervalId = setInterval(() => {
-        if (Number(time.innerHTML) > 9 && Number(time.innerHTML) <= 30) {
+        if (Number(time.innerHTML) > 9 && Number(time.innerHTML) <= 20) {
           time.setAttribute('class', 'halfway');
         }
         if (Number(time.innerHTML) >= 0 && Number(time.innerHTML) <= 10) {
           time.setAttribute('class', 'tenSec');
         }
         const newTime = new Date().getTime();
-        if (Number(time.innerHTML) == 0 || startTime - newTime >= 60000) {
+        if (Number(time.innerHTML) == 0 || startTime - newTime >= 30000) {
           startTime = 0;
           tileBoard.score = 0;
           score.innerHTML = `${currScore} - Game Over`;
@@ -31,7 +31,7 @@ function init() {
           time.setAttribute('class', '');
           clearInterval(intervalId);
           intervalId = null;
-          time.innerHTML = 60;
+          time.innerHTML = 30;
         } else {
           time.innerHTML = Number(time.innerHTML) - 1;
         }
@@ -53,6 +53,6 @@ function init() {
       clearInterval(intervalId);
       intervalId = null;
     }
-    time.innerHTML = 60;
+    time.innerHTML = 30;
   });
 }
